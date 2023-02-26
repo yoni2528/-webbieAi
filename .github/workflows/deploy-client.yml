@@ -1,0 +1,44 @@
+name: Deploy client-side code to aws ecs
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./client
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: build app
+        run: npm run build
+
+      - name: upload to aws s3 bucket
+        run: aws s3 sync ./dist s3://webbieai-client
+
+      # - name: invalidate cloudfront
+      #   run: aws cloudfront create-invalidation --distribution-id=E3EVHQSXOSPLVX --paths "/*"
