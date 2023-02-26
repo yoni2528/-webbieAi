@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("running test number 1");
+  res.send("running test number 2");
 });
 
 export default app;
