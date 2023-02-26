@@ -80,6 +80,7 @@ jobs:
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: false
+          force-new-deployment: true
 
       - name: invalidate cloudfront
         run: aws cloudfront create-invalidation --distribution-id=E1PYW7X04JRUS --paths "/*"
