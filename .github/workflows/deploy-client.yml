@@ -40,5 +40,6 @@ jobs:
       - name: upload to aws s3 bucket
         run: aws s3 sync ./dist s3://webbieai-client
 
-      # - name: invalidate cloudfront
+        # - name: invalidate cloudfront
+      - name: invalidate cloudfront
         run: aws cloudfront create-invalidation --distribution-id=E3NVWWVUUHAWLS --paths "/*"
