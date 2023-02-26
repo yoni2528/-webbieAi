@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 export const signToken = async (userId) => {
   const token = await jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: "30",
+    expiresIn: "1y",
   });
   return token;
 };
