@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-print-color-adjust: exact !important;
+}
+
+@layer components {
+  .btn {
+    background-color: transparent;
+    border-radius: 0.5rem;
+  }
+  .btn-next {
+    background-color: #6366f1;
+    color: white;
+    padding: 0.5rem 4rem;
+  }
+  .btn-previous {
+    background-color: white;
+    color: #6366f1;
+    padding: 0.5rem 4rem;
+    border: 1px solid #6366f1;
+  }
+  .btn-primary {
+    background-color: #6366f1;
+    padding: 0.5rem 2rem;
+    color: white;
+  }
+  .btn-transparent {
+    padding: 0.5rem 2rem;
+    color: white;
+  }
+}
+
+.file-upload {
+  width: 140px;
+  height: 60px;
+  opacity: 0;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.file-upload::-webkit-file-upload-button {
+  background: #4285f4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

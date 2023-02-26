@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- BODY -->
+    <script>
+      // Script -->
+      const name = document.querySelector("#name");
+      const email = document.querySelector("#email");
+      const message = document.querySelector("#message");
+      const submitBtn = document.querySelector("#submitForm");
+
+      submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        fetch("http://127.0.0.1:3000/app/v1/users/email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            to: senderEmail,
+            from: email.value,
+            message: message.value,
+            name: name.value,
+          }),
+        });
+      });
+    </script>
+  </body>
+</html>
