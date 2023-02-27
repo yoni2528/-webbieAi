@@ -2,14 +2,14 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 export const signToken = async (userId) => {
-  const token = await jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: "10h",
+  const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: Math.floor(Date.now() / 1000) + 60 * 60,
   });
   return token;
 };
 
 export const verifyToken = async (token) => {
-  const verifyId = await jwt.verify(token, process.env.JWT_SECRET);
+  const verifyId = jwt.verify(token, process.env.JWT_SECRET);
   return verifyId;
 };
 
