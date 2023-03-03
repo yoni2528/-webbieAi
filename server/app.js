@@ -6,10 +6,28 @@ import openaiRouter from "./routers/openaiRouter.js";
 import userRouter from "./routers/userRouter.js";
 import websiteRouter from "./routers/websiteRouter.js";
 
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
+import xss from "xss-clean";
+
 dotenv.config({ path: "./config.env" });
 const app = express();
 
 import errorHelper from "./utils/errorHelper.js";
+
+app.use(
+  cors({
+    allowedOrigins: [
+      "https://stately-sorbet-ddca2e.netlify.app/",
+      "https://stately-sorbet-ddca2e.netlify.app",
+      "http://127.0.0.1:5173",
+    ],
+  })
+);
+
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(mongoSanitize());
+app.use(xss());
 
 app.use(express.json());
 

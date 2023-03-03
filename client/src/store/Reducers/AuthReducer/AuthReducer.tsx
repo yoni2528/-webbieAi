@@ -9,7 +9,6 @@ export const authReducer = createSlice({
   initialState,
   reducers: {
     login(state) {
-      console.log("running");
       state.isLogin = true;
     },
     logout(state) {

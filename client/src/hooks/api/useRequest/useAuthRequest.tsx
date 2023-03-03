@@ -44,7 +44,6 @@ const useAuthRequest = () => {
       navigate("/websites");
     },
     onError(Error: AxiosError<{ title: string; error: string }>) {
-      console.log(Error.response);
       if (!Error.response) return;
       const { title, error } = Error.response.data;
       dispatch(errorActions.setError({ title, content: error }));
