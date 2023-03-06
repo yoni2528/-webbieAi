@@ -19,7 +19,7 @@ app.use(
   cors({
     allowedOrigins: [
       "https://stately-sorbet-ddca2e.netlify.app/",
-      "https://stately-sorbet-ddca2e.netlify.app",
+      "https://webbie-17zs7w9b8-yoni2528.vercel.app",
       "http://127.0.0.1:5173",
     ],
   })
@@ -30,8 +30,6 @@ app.use(mongoSanitize());
 app.use(xss());
 
 app.use(express.json());
-
-app.use(cors());
 
 app.use(morgan("combined"));
 
