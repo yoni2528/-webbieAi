@@ -152,7 +152,10 @@ export const updatePrompt = catchAsync(async (req, res) => {
 });
 
 export const getWebPrompts = catchAsync(async (req, res) => {
-  const webPrompt = await WebPrompts.find({ user: req.user.id }).select("-__v");
+  const webPrompt = await WebPrompts.find({ user: req.user.id }).select(
+    "-__v -email"
+  );
+  console.log(webPrompt);
   res.json({
     status: "success",
     data: webPrompt,
